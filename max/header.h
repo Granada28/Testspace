@@ -6,7 +6,7 @@
 /*   By: granada <granada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 18:47:38 by granada           #+#    #+#             */
-/*   Updated: 2024/10/06 21:54:08 by granada          ###   ########.fr       */
+/*   Updated: 2024/10/06 22:08:52 by granada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define MAX_LINE_LENGTH 800
 
 # include <fcntl.h>
-# include <stdio.h>
+//# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
