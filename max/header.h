@@ -6,7 +6,7 @@
 /*   By: granada <granada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 18:47:38 by granada           #+#    #+#             */
-/*   Updated: 2024/10/06 21:21:34 by granada          ###   ########.fr       */
+/*   Updated: 2024/10/06 21:54:08 by granada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		extract_line(char **lines, char *ptr, int line_length,
 char	**reserve_spaces_lines(const char *filename, int *line_count);
 char	**read_lines_from_file(const char *filename, int *line_count);
 int		read_lines_from_buffer(int fd, char **lines, int *current_line);
-int 	process_buffer(char *buffer, char **lines, int *current_line, char **ptr);
+int 	process_buffer(char *buffer, char **lines, int *current_line, 
+			char **ptr);
 
 #endif
