@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+int	print_val(int i, int len, char **box_map);
 
 int main(void)
 {
@@ -10,7 +10,7 @@ int main(void)
 	int	len;
 	int boxes = 3;
 	
-	char *str = "1000333"; // <- str to change
+	char *str = "1999333"; // <- str to change
 	int nbr_put = 0;
 
 	i = 0;
@@ -96,106 +96,48 @@ int main(void)
 		}
 		if (skip == 0 && len >= 20 && len <= 22) // sextillion
 		{
-			while (j < 3)
-			{
-				if (box_map[i][j] == '-')
-					;
-				else
-					printf("%c", box_map[i][j]);
-				j++;
-			}
+			print_val(i, len, box_map);
 			printf(" sextillion ");
 			len = len - 3;
 		}
 		else if (skip == 0 && len >= 17 && len <= 19) // quintillion
 		{
-			while (j < 3)
-			{
-				if (box_map[i][j] == '-')
-					;
-				else
-					printf("%c", box_map[i][j]);
-				j++;
-			}
+			print_val(i, len, box_map);
 			printf(" quintillion ");
 			len = len - 3;
 		}
 		else if (skip == 0 && len >= 14 && len <= 16) // quadrillion
 		{
-			while (j < 3)
-			{
-				if (box_map[i][j] == '-')
-					;
-				else
-					printf("%c", box_map[i][j]);
-				j++;
-			}
+			print_val(i, len, box_map);
 			printf(" quadrillion ");
 			len = len - 3;
 		}
 		else if (skip == 0 && len >= 11 && len <= 13) // trillion
 		{
-			while (j < 3)
-			{
-				if (box_map[i][j] == '-')
-					;
-				else
-					printf("%c", box_map[i][j]);
-				j++;
-			}
+			print_val(i, len, box_map);
 			printf(" trillion ");
 			len = len - 3;
 		}
 		else if (skip == 0 && len >= 8 && len <= 10) // billion
 		{
-			while (j < 3)
-			{
-				if (box_map[i][j] == '-')
-					;
-				else
-					printf("%c", box_map[i][j]);
-				j++;
-			}
+			print_val(i, len, box_map);
 			printf(" billion ");
 			len = len - 3;
 		}
 		else if (skip == 0 && len >= 5 && len <= 7) // million
 		{
-			while (j < 3)
-			{
-				if (box_map[i][j] == '-')
-					;
-				else
-					printf("%c", box_map[i][j]);
-				j++;
-			}
+			print_val(i, len, box_map);
 			printf(" million ");
 			len = len - 3;
 		}
 		else if (skip == 0 && len >= 2 && len <= 4) // thousand
 		{
-			while (j < 3)
-			{
-				if (box_map[i][j] == '-')
-					;
-				else
-					printf("%c", box_map[i][j]);
-				j++;
-			}
+			print_val(i, len, box_map);
 			printf(" thousand ");
 			len = len - 3;
 		}
 		else if (skip == 0 && len > 0 && len < 2) // hundred
-		{
-			while (j < 3)
-			{
-				if (box_map[i][j] == '-')
-					;
-				else
-					printf("%c", box_map[i][j]);
-				j++;
-			}
-		}
+			print_val(i, len, box_map);
 		skip = 0;
 		j = 0;
 		i++;
@@ -206,4 +148,20 @@ int main(void)
         free(box_map[i]);
     }
     free(box_map);
+}
+
+int	print_val(int i, int len, char **box_map)
+{
+	int j;
+
+	j = 0;
+	while (j < 3)
+	{
+		if (box_map[i][j] == '-')
+			;
+		else
+			printf("%c", box_map[i][j]);
+		j++;
+	}
+	return (len);
 }

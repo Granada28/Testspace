@@ -6,7 +6,7 @@
 /*   By: demelche <demelche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 13:52:32 by demelche          #+#    #+#             */
-/*   Updated: 2024/10/06 16:00:59 by demelche         ###   ########.fr       */
+/*   Updated: 2024/10/06 19:00:02 by demelche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int		**boxes_array(int boxes, char *str)
 	i = 0;
 	j = 0;
 	len = 0;
-	box_map[]
 	len = length(str);
+	boxes = boxes_calc(len);
 	while (i < boxes)
 	{
 		while (j < 3)
@@ -70,6 +70,8 @@ int		boxes_calc(int leng)
 	
 	i = 0;
 	i = leng / 3;
+	if (leng % 3 != 0)
+		i++;
 	return (i);
 }
 
