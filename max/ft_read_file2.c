@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_file2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demelche <demelche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: granada <granada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 18:56:08 by granada           #+#    #+#             */
-/*   Updated: 2024/10/06 20:53:35 by demelche         ###   ########.fr       */
+/*   Updated: 2024/10/06 21:22:43 by granada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ int	count_lines_in_file(const char *filename)
 
 	fd = open(filename, 0);
 	if (fd < 0)
-	{
 		return (-1);
-	}
 	line_count = 0;
 	bytes_read = read(fd, buffer, sizeof(buffer) - 1);
 	while (bytes_read > 0)
@@ -88,15 +86,14 @@ void	free_lines(char **lines, int line_count)
 	free(lines);
 }
 
-// Funktion, um eine Zeile aus dem Puffer zu extrahieren
 int	extract_line(char **lines, char *ptr, int line_length, int current_line)
 {
 	lines[current_line] = malloc(line_length + 1);
 	if (lines[current_line] == NULL)
 	{
-		return (-1); // Fehler bei der Allokation
+		return (-1); 
 	}
 	ft_strncpy(lines[current_line], ptr - line_length, line_length);
-	lines[current_line][line_length] = '\0'; // Nullterminierung
-	return (0);                                // Erfolg
+	lines[current_line][line_length] = '\0'; 
+	return (0);                                
 }

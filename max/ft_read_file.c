@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demelche <demelche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: granada <granada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 15:17:34 by granada           #+#    #+#             */
-/*   Updated: 2024/10/06 20:53:18 by demelche         ###   ########.fr       */
+/*   Updated: 2024/10/06 21:29:24 by granada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,44 +27,45 @@
 //     return (0);
 // }
 
-// Funktion, um die Zeilen aus der Datei zu lesen
-int	read_lines_from_buffer(int fd, char **lines, int *current_line)
-{
-	char	buffer[MAX_LINE_LENGTH];
-	int		bytes_read;
-	char	*ptr;
-	int		line_length;
+int process_buffer(char *buffer, char **lines, int *current_line, char **ptr) {
+    int line_length = 0;
 
-	while ((bytes_read = read(fd, buffer, sizeof(buffer) - 1)) > 0)
-	{
-		buffer[bytes_read] = '\0'; // Nullterminierung
-		ptr = buffer;
-		while (*ptr)
-		{
-			line_length = 0;
-			while (*ptr && *ptr != '\n' && line_length < MAX_LINE_LENGTH - 1)
-			{
-				line_length++;
-				ptr++;
-			}
-			if (line_length > 0)
-			{
-				if (extract_line(lines, ptr, line_length, *current_line) < 0)
-				{
-					return (-1); // Fehler bei der Zeilenextraktion
-				}
-				(*current_line)++;
-			}
-			if (*ptr == '\n')
-			{
-				ptr++;
-			}
-		}
-	}
-	return (0); // Erfolg
+    while (**ptr) {
+        line_length = 0;
+        while (**ptr && **ptr != '\n' && line_length < MAX_LINE_LENGTH - 1) {
+            line_length++;
+            (*ptr)++;
+        }
+        if (extract_line(lines, *ptr, line_length, *current_line) < 0) {
+            return -1; 
+        }
+        (*current_line)++;
+        if (**ptr == '\n') {
+            (*ptr)++;
+        }
+    }
+    return 0; 
 }
 
-// Hauptfunktion, um die Zeilen aus der Datei zu lesen
+int read_lines_from_buffer(int fd, char **lines, int *current_line) {
+    char buffer[MAX_LINE_LENGTH];
+    int bytes_read;
+    char *ptr;
+
+    bytes_read = read(fd, buffer, sizeof(buffer) - 1);
+    while (bytes_read > 0) {
+        buffer[bytes_read] = '\0';
+        ptr = buffer;
+
+        if (process_buffer(buffer, lines, current_line, &ptr) < 0) {
+            return -1; 
+        }
+
+        bytes_read = read(fd, buffer, sizeof(buffer) - 1);
+    }
+    return 0; 
+}
+
 char	**read_lines_from_file(const char *filename, int *line_count)
 {
 	char	**lines;
@@ -82,8 +83,8 @@ char	**read_lines_from_file(const char *filename, int *line_count)
 	if (read_lines_from_buffer(fd, lines, &current_line) < 0)
 	{
 		close(fd);
-		free_malloc_failure(lines, current_line); // Speicher freigeben
-		return (NULL);                              // Fehler
+		free_malloc_failure(lines, current_line); 
+		return (NULL);                              
 	}
 	close(fd);
 	return (lines);
